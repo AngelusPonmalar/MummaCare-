@@ -1,0 +1,137 @@
+.assessment-container{
+    max-width:420px;
+    margin:auto;
+    padding:20px;
+    font-family: "Segoe UI", sans-serif;
+    background:#f8f7fb;
+    }
+    
+    .update-btn{
+    float:right;
+    background:#ff2d78;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+    margin-bottom:15px;
+    }
+    
+    .card{
+    background:white;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .pink-border{
+    border:1px solid #ffd0df;
+    }
+    
+    .purple-border{
+    border:1px solid #e5dbff;
+    }
+    
+    .card-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:#fa0879;
+    margin-bottom:8px;
+    }
+    
+    .input-box{
+    width:100%;
+    border:1px solid #eee;
+    border-radius:10px;
+    padding:8px;
+    background:#fafafa;
+    font-size:14px;
+    }
+    
+    .value{
+    font-size:22px;
+    font-weight:600;
+    margin-top:8px;
+    }
+    
+    .pink{
+    color:#ff2d78;
+    }
+    
+    .purple{
+    color:#7b3ff2;
+    }
+    
+    .red{
+    color:#ff2a2a;
+    }
+    
+    .badge{
+    display:inline-block;
+    margin-top:8px;
+    padding:4px 12px;
+    border-radius:20px;
+    font-size:12px;
+    border:2px solid;
+    }
+    
+    .green{
+    color:#22c55e;
+    border-color:#22c55e;
+    }
+    
+    .orange{
+    color:#f97316;
+    border-color:#f97316;
+    }
+    
+    .note-box{
+    background:#efe8ff;
+    padding:14px;
+    border-radius:12px;
+    font-size:13px;
+    color:#6a40c9;
+    }
+    .save-btn{
+        float:right;
+        background:#22c55e;
+        color:white;
+        border:none;
+        padding:8px 16px;
+        border-radius:20px;
+        font-size:13px;
+        cursor:pointer;
+        margin-bottom:15px;
+        }
+        .brand-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #ffe6ef; /* Soft light pink background */
+  padding: 20px;
+  border-radius: 24px;
+  margin-bottom: 25px;
+  border: 1px solid #ffc2d9;
+}
+
+.logo-circle {
+  background: white;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(255, 45, 120, 0.15);
+}
+
+.brand-name {
+  font-weight: 900;  /* Maximum boldness */
+  font-size: 32px;   /* Big size for prominence */
+  color: #d61c5e;    /* Darker, rich pink for contrast */
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+}
