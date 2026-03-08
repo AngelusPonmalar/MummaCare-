@@ -12,21 +12,21 @@ Tracks health, stores medical documents, provides AI chatbot support, and lists 
 
 run using 
 
-# Clone the repo
+Clone the repo
 git clone https://github.com/AngelusPonmalar/MummaCare-.git
 cd mummacare
 
-# Install frontend dependencies
+Install frontend dependencies
 npm install
 
-# Start frontend development server
+Start frontend development server
 npm run dev
 
-# Navigate to the backend folder
+Navigate to the backend folder
 cd backend
 
-# Install backend dependencies (if you haven't already)
+Install backend dependencies (if you haven't already)
 npm install
 
-# Start the backend server
+ Start the backend server
 node server.js
