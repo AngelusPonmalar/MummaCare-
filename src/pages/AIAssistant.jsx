@@ -56,7 +56,7 @@ export default function AIAssistant() {
         <div className="logo-circle">
           <Heart size={20} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span className="brand-name">PregMa</span>
+        <span className="brand-name">MummaCare+</span>
       </div>
 
       {/* AI Header */}
