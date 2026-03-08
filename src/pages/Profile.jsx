@@ -30,7 +30,7 @@ export default function Profile() {
         <div style={logoCircle}>
           <Heart size={26} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span style={brandName}>PregMa</span>
+        <span style={brandName}>MummaCare+</span>
       </div>
 
       <div style={pageWrapper}>
