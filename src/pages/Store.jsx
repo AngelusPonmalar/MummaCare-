@@ -22,7 +22,7 @@ const Store = () => {
         <div className="logo-circle-store">
           <Heart size={32} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span className="brand-name-store">MummaCare+</span>
+        <span className="brand-name-store">PregMa</span>
       </div>
 
       <h1 className="store-title">Pregnancy Care Store</h1>
