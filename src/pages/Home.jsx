@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import { Calendar, Heart, Clock, Baby } from "lucide-react";
 import {
@@ -12,56 +12,7 @@ import {
   Legend
 } from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-/* ---------- Pregnancy Calculator ---------- */
-
-function getPregnancyInfo(lmpDate) {
-  const today = new Date();
-  const lmp = new Date(lmpDate);
-
-  const diffDays = Math.floor((today - lmp) / (1000 * 60 * 60 * 24));
-  const weeks = Math.max(0, Math.floor(diffDays / 7));
-
-  let trimester = "First";
-  if (weeks > 12 && weeks <= 27) trimester = "Second";
-  if (weeks > 27) trimester = "Third";
-
-  const edd = new Date(lmp);
-  edd.setDate(edd.getDate() + 280);
-
-  return { weeks, trimester, edd };
-}
-
-/* ---------- Baby Growth Data ---------- */
-
-const babyGrowth = {
-  8: { size: "Raspberry", weight: "2g", tip: "Baby’s fingers are forming." },
-  12: { size: "Lime", weight: "14g", tip: "Baby can start moving tiny arms and legs." },
-  16: { size: "Avocado", weight: "100g", tip: "Baby’s skeleton is developing." },
-  20: { size: "Banana", weight: "300g", tip: "Baby can hear sounds now." },
-  24: { size: "Corn 🌽", weight: "600g", tip: "Baby’s lungs are developing." },
-  28: { size: "Eggplant", weight: "1kg", tip: "Baby can blink eyes." },
-  32: { size: "Coconut", weight: "1.7kg", tip: "Bones are fully developed." },
-  36: { size: "Papaya", weight: "2.6kg", tip: "Baby is preparing for birth." },
-  40: { size: "Watermelon", weight: "3.2kg", tip: "Baby is ready to be born." }
-};
-
-function getBabyInfo(week) {
-  let closest = 8;
-  Object.keys(babyGrowth).forEach((w) => {
-    if (week >= w) closest = w;
-  });
-  return babyGrowth[closest];
-}
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 /* ---------- Styles ---------- */
 
@@ -75,10 +26,12 @@ const container = {
   boxSizing: "border-box"
 };
 
+/* Branding Header Styles */
+
 const brandHeader = {
   display: "flex",
   alignItems: "center",
-  gap: "12px",
+  gap: "10px",
   marginBottom: "20px"
 };
 
@@ -108,20 +61,25 @@ const titleStyle = {
 const mainWrapper = {
   display: "flex",
   flexWrap: "wrap",
-  gap: "30px"
+  gap: "30px",
+  width: "100%"
 };
 
 const leftColumn = {
-  flex: "1 1 420px"
+  flex: "1 1 450px",
+  display: "flex",
+  flexDirection: "column"
 };
 
 const rightColumn = {
-  flex: "1 1 420px"
+  flex: "1 1 450px",
+  display: "flex",
+  flexDirection: "column"
 };
 
 const cardGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(2,1fr)",
+  gridTemplateColumns: "repeat(2, 1fr)",
   gap: "15px",
   marginBottom: "25px"
 };
@@ -146,39 +104,24 @@ const tipCard = {
   boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
 };
 
+const sectionTitle = {
+  marginBottom: "12px",
+  color: "#444",
+  fontSize: "20px"
+};
+
 const chartBox = {
   background: "#FAFAFA",
   padding: "20px",
   borderRadius: "16px",
-  marginBottom: "25px"
-};
-
-const progressBar = {
+  marginBottom: "25px",
   width: "100%",
-  height: "10px",
-  background: "#FCE4EC",
-  borderRadius: "20px",
-  overflow: "hidden",
-  marginTop: "8px"
+  boxSizing: "border-box"
 };
-
-const progressFill = (percent) => ({
-  width: percent + "%",
-  height: "100%",
-  background: "#E91E63"
-});
 
 /* ---------- Component ---------- */
 
 export default function Home() {
-
-  const [LMP, setLMP] = useState("2025-09-15");
-
-  const { weeks, trimester, edd } = getPregnancyInfo(LMP);
-
-  const baby = getBabyInfo(weeks);
-
-  const progress = Math.min((weeks / 40) * 100, 100);
 
   const weightData = {
     labels: ["Week 4", "Week 8", "Week 12", "Week 16", "Week 20"],
@@ -207,19 +150,20 @@ export default function Home() {
   return (
     <div style={container}>
 
-      {/* Header */}
+      {/* Branding Header */}
+
       <div style={brandHeader}>
         <div style={logoCircle}>
-          <Heart size={32} fill="#ff2d78" color="#ff2d78" />
+          <Heart size={26} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span style={brandName}>MummaCare+</span>
+        <span style={brandName}>PregMa</span>
       </div>
 
       <h2 style={titleStyle}>Hello Mumma 🤍</h2>
 
       <div style={mainWrapper}>
 
-        {/* LEFT SECTION */}
+        {/* LEFT SIDE */}
 
         <div style={leftColumn}>
 
@@ -228,62 +172,51 @@ export default function Home() {
             <div style={card}>
               <Baby style={iconStyle} />
               <div>
-                <h5 style={{ margin: 0, fontSize: "12px" }}>Pregnancy Week</h5>
-                <p style={{ margin: 0, fontWeight: "bold" }}>{weeks} Weeks</p>
-
-                <div style={progressBar}>
-                  <div style={progressFill(progress)}></div>
-                </div>
-
-                <small>{weeks} / 40 weeks</small>
+                <h5 style={{ margin: 0, fontSize: "12px" }}>
+                  Pregnancy Week
+                </h5>
+                <p style={{ margin: 0, fontWeight: "bold" }}>
+                  24 Weeks
+                </p>
               </div>
             </div>
 
             <div style={card}>
               <Clock style={iconStyle} />
               <div>
-                <h5 style={{ margin: 0, fontSize: "12px" }}>Trimester</h5>
-                <p style={{ margin: 0, fontWeight: "bold" }}>{trimester}</p>
-              </div>
-            </div>
-
-            <div style={card}>
-              <Calendar style={iconStyle} />
-              <div>
-                <h5 style={{ margin: 0, fontSize: "12px" }}>Last Menstrual Period</h5>
-
-                <input
-                  type="date"
-                  value={LMP}
-                  onChange={(e) => setLMP(e.target.value)}
-                  style={{
-                    border: "none",
-                    background: "transparent",
-                    fontWeight: "bold"
-                  }}
-                />
-              </div>
-            </div>
-
-            <div style={card}>
-              <Calendar style={iconStyle} />
-              <div>
-                <h5 style={{ margin: 0, fontSize: "12px" }}>Expected Delivery Date</h5>
+                <h5 style={{ margin: 0, fontSize: "12px" }}>
+                  Trimester
+                </h5>
                 <p style={{ margin: 0, fontWeight: "bold" }}>
-                  {edd.toDateString()}
+                  Second
                 </p>
               </div>
             </div>
 
-          </div>
+            <div style={card}>
+              <Calendar style={iconStyle} />
+              <div>
+                <h5 style={{ margin: 0, fontSize: "12px" }}>
+                  Last Menstrual Period
+                </h5>
+                <p style={{ margin: 0, fontWeight: "bold" }}>
+                  Sep 15, 2025
+                </p>
+              </div>
+            </div>
 
-          {/* Baby Development */}
+            <div style={card}>
+              <Calendar style={iconStyle} />
+              <div>
+                <h5 style={{ margin: 0, fontSize: "12px" }}>
+                  Expected Delivery Date
+                </h5>
+                <p style={{ margin: 0, fontWeight: "bold" }}>
+                  Jun 22, 2026
+                </p>
+              </div>
+            </div>
 
-          <div style={tipCard}>
-            <h4 style={{ marginTop: 0 }}>Baby Development</h4>
-            <p><strong>Baby Size:</strong> {baby?.size}</p>
-            <p><strong>Weight:</strong> {baby?.weight}</p>
-            <p>{baby?.tip}</p>
           </div>
 
           <div style={tipCard}>
@@ -296,17 +229,17 @@ export default function Home() {
 
         </div>
 
-        {/* RIGHT SECTION (GRAPHS) */}
+        {/* RIGHT SIDE */}
 
         <div style={rightColumn}>
 
-          <h3>Pregnancy Weight Gain</h3>
+          <h3 style={sectionTitle}>Pregnancy Weight Gain</h3>
 
           <div style={chartBox}>
             <Line data={weightData} options={{ responsive: true }} />
           </div>
 
-          <h3>Fetal Growth Chart</h3>
+          <h3 style={sectionTitle}>Fetal Growth Chart</h3>
 
           <div style={chartBox}>
             <Line data={fetalData} options={{ responsive: true }} />
@@ -315,6 +248,8 @@ export default function Home() {
         </div>
 
       </div>
+
+      <div style={{ height: "80px", width: "100%" }}></div>
 
     </div>
   );
