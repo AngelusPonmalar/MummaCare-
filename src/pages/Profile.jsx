@@ -70,33 +70,22 @@ export default function Profile() {
           </div>
 
           {/* Summary */}
-          <div
-            style={{
-              ...card,
-              background: "#FFF0F5",
-              border: "1px solid #FFC0CB",
-            }}
-          >
-            <h3 style={{ ...sectionTitle, color: "#D81B60" }}>
-              ❤️ Quick Summary
-            </h3>
+          <div style={{ ...card, background: "#FFF0F5", border: "1px solid #FFC0CB" }}>
+            <h3 style={{ ...sectionTitle, color: "#D81B60" }}>❤️ Quick Summary</h3>
 
             <div style={summaryGrid}>
               <div>
                 <label style={labelStyle}>Gravida</label>
                 <p style={textStyle}>{form.gravida}</p>
               </div>
-
               <div>
                 <label style={labelStyle}>Para</label>
                 <p style={textStyle}>{form.para}</p>
               </div>
-
               <div>
                 <label style={labelStyle}>Living Children</label>
                 <p style={textStyle}>{form.livingChild}</p>
               </div>
-
               <div>
                 <label style={labelStyle}>Age</label>
                 <p style={textStyle}>{form.age} years</p>
@@ -116,7 +105,6 @@ function renderInput(label, name, value, isEditing, onChange, type = "text") {
   return (
     <div style={{ marginBottom: "15px" }}>
       <label style={labelStyle}>{label}</label>
-
       <input
         type={type}
         name={name}
@@ -130,7 +118,6 @@ function renderInput(label, name, value, isEditing, onChange, type = "text") {
 }
 
 /* ---------- Styles ---------- */
-
 const brandHeader = {
   position: "fixed",
   top: 0,
@@ -186,7 +173,7 @@ const headerRow = {
 
 const gridContainer = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", // <-- responsive
   gap: "20px",
   width: "100%",
   maxWidth: "1200px",
@@ -199,6 +186,7 @@ const card = {
   boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
   border: "1px solid #FCE4EC",
   width: "100%",
+  boxSizing: "border-box",
 };
 
 const summaryGrid = {
