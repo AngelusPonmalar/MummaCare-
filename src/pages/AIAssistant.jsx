@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Send, Bot, Heart } from "lucide-react";
+import "./AIAssistant.css";
 
 export default function AIAssistant() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hello Mumma 🤍 I'm your AI Pregnancy Companion! How can I help you today?" }
+    {
+      sender: "bot",
+      text: "Hello Mumma 🤍 I'm your AI Pregnancy Companion! How can I help you today?"
+    }
   ]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -26,61 +30,52 @@ export default function AIAssistant() {
     setIsTyping(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/chat",
-        { message: userMessage },
-        { timeout: 8000 }
-      );
-      setMessages([...newMessages, { sender: "bot", text: res.data.reply }]);
-    } catch (error) {
-      let replyMessage = "";
+      const res = await axios.post("http://localhost:5000/chat", {
+        message: userMessage
+      });
 
-      if (error.code === "ECONNREFUSED" || error.message.includes("Network Error")) {
-        replyMessage =
-          "⚠️ AI service is not connected yet.\n\nPlease start the backend server in Terminal 2:\n\n1️⃣ Open a new terminal\n2️⃣ Navigate to backend folder\n3️⃣ Run: node server.js\n\nOnce backend is running, AI assistant will respond normally.";
-      } else if (error.message.includes("timeout")) {
-        replyMessage =
-          "⚠️ Network connection issue detected.\n\nPlease check your internet connection and try again.";
-      } else {
-        replyMessage = "⚠️ AI assistant is currently unavailable. Please try again later.";
-      }
-
-      setMessages([...newMessages, { sender: "bot", text: replyMessage }]);
+      setMessages([
+        ...newMessages,
+        { sender: "bot", text: res.data.reply }
+      ]);
+    } catch {
+      setMessages([
+        ...newMessages,
+        { sender: "bot", text: "AI assistant is currently unavailable." }
+      ]);
     } finally {
       setIsTyping(false);
     }
   };
 
   return (
-    <div style={{ paddingTop: "70px", paddingBottom: "120px", background: "#FFF8FB", minHeight: "100vh" }}>
-      {/* Floating Header */}
-      <div style={styles.floatingHeader}>
-        <div style={styles.logoCircle}><Heart size={28} fill="#ff2d78" color="#ff2d78" /></div>
-        <span style={styles.brandName}>PregMa</span>
+    <div className="ai-container">
+
+      {/* PregMa Branding Header */}
+      <div className="brand-header">
+        <div className="logo-circle">
+          <Heart size={20} fill="#ff2d78" color="#ff2d78" />
+        </div>
+        <span className="brand-name">PregMa</span>
       </div>
 
       {/* AI Header */}
-      <div style={{ margin: "20px 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      <div className="ai-header">
+        <div className="ai-icon">
           <Bot size={26} />
-          <h2 style={{ color: "#E91E63", fontWeight: "bold", margin: 0 }}>AI Pregnancy Companion</h2>
+        </div>
+
+        <div>
+          <h2 className="ai-title">AI Pregnancy Companion</h2>
         </div>
       </div>
 
-      {/* Quick questions */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "15px" }}>
+      {/* Quick Questions */}
+      <div className="quick-grid">
         {quickQuestions.map((q, i) => (
           <button
             key={i}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "20px",
-              border: "none",
-              background: "#FF69B4",
-              color: "#fff",
-              cursor: "pointer",
-              fontSize: "13px"
-            }}
+            className="quick-btn"
             onClick={() => sendMessage(q)}
           >
             {q}
@@ -89,100 +84,52 @@ export default function AIAssistant() {
       </div>
 
       {/* Chat Box */}
-      <div style={{ maxHeight: "calc(100vh - 250px)", overflowY: "auto" }}>
+      <div className="chat-box">
         {messages.map((msg, i) => (
-          <div key={i} style={{ display: "flex", marginBottom: "10px", alignItems: "flex-end", flexDirection: msg.sender === "user" ? "row-reverse" : "row" }}>
-            {msg.sender === "bot" && <Bot size={16} style={{ marginRight: "6px" }} />}
-            <div style={{
-              background: msg.sender === "bot" ? "#FFF0F5" : "#E91E63",
-              color: msg.sender === "bot" ? "#000" : "#fff",
-              padding: "10px 14px",
-              borderRadius: "16px",
-              maxWidth: "70%",
-              wordBreak: "break-word",
-              fontSize: "14px"
-            }}>
+          <div key={i} className={`chat-row ${msg.sender}-row`}>
+            {msg.sender === "bot" && (
+              <div className="bot-icon">
+                <Bot size={16} />
+              </div>
+            )}
+
+            <div className={`chat-bubble ${msg.sender}-bubble`}>
               {msg.text}
             </div>
           </div>
         ))}
 
-        {/* Typing indicator */}
+        {/* Typing Animation */}
         {isTyping && (
-          <div style={{ display: "flex", marginBottom: "10px", alignItems: "center" }}>
-            <Bot size={16} style={{ marginRight: "6px" }} />
-            <div style={{ background: "#FFF0F5", padding: "10px 14px", borderRadius: "16px", display: "flex", gap: "4px" }}>
-              <span style={styles.dot}></span>
-              <span style={styles.dot}></span>
-              <span style={styles.dot}></span>
+          <div className="chat-row bot-row">
+            <div className="bot-icon">
+              <Bot size={16} />
+            </div>
+
+            <div className="chat-bubble bot-bubble typing-dots">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </div>
         )}
       </div>
 
       {/* Floating Input */}
-      <div style={styles.floatingInputArea}>
+      <div className="floating-input-area">
         <input
           type="text"
           placeholder="Ask me anything..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          style={styles.inputBox}
         />
-        <button style={styles.sendBtn} onClick={() => sendMessage()}><Send size={18} /></button>
+
+        <button onClick={() => sendMessage()}>
+          <Send size={18} />
+        </button>
       </div>
+
+      <div style={{ height: "120px" }}></div>
     </div>
   );
 }
-
-const styles = {
-  floatingHeader: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "60px",
-    background: "#fff0f5",
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    padding: "0 20px",
-    zIndex: 999,
-    boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-  },
-  logoCircle: {
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    background: "#fff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    boxShadow: "0 2px 5px rgba(0,0,0,0.1)"
-  },
-  brandName: { fontSize: "20px", fontWeight: "bold", color: "#E91E63" },
-  floatingInputArea: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    width: "100%",
-    display: "flex",
-    padding: "10px 15px",
-    background: "#fff8f8",
-    boxShadow: "0 -2px 8px rgba(0,0,0,0.1)",
-    gap: "10px",
-    alignItems: "center",
-    zIndex: 998
-  },
-  inputBox: { flex: 1, padding: "10px 14px", borderRadius: "20px", border: "1px solid #FCE4EC", outline: "none" },
-  sendBtn: { background: "#E91E63", color: "#fff", border: "none", padding: "10px 15px", borderRadius: "50%", cursor: "pointer" },
-  dot: {
-    width: "6px",
-    height: "6px",
-    borderRadius: "50%",
-    background: "#E91E63",
-    display: "inline-block",
-    animation: "blink 1.4s infinite both"
-  }
-};
