@@ -71,7 +71,7 @@ export default function MedicalHistory() {
         <div style={styles.logoCircle}>
           <Heart size={26} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span style={styles.brandName}>PregMa</span>
+        <span style={styles.brandName}>MummaCare+</span>
       </div>
 
       <div style={{ height: "70px" }} /> {/* spacing for floating header */}
