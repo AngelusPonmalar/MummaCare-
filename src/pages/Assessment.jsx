@@ -74,7 +74,7 @@ function Assessment() {
         <div className="logo-circle">
           <Heart size={26} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span className="brand-name">PregMa</span>
+        <span className="brand-name">MummaCare+</span>
       </div>
 
       <div className="assessment-container" ref={pdfRef}>
