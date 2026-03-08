@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart } from "lucide-react"; // Ensure lucide-react is installed
+import { Heart } from "lucide-react";
 import "./Store.css";
 
 const products = [
@@ -16,12 +16,13 @@ const products = [
 const Store = () => {
   return (
     <div className="store-container">
-      {/* Branding Header integrated directly */}
-      <div style={brandStyles.header}>
-        <div style={brandStyles.logoCircle}>
+
+      {/* Fixed-like Branding Header */}
+      <div className="brand-header-store">
+        <div className="logo-circle-store">
           <Heart size={32} fill="#ff2d78" color="#ff2d78" />
         </div>
-        <span style={brandStyles.name}>MummaCare+</span>
+        <span className="brand-name-store">MummaCare+</span>
       </div>
 
       <h1 className="store-title">Pregnancy Care Store</h1>
@@ -36,16 +37,10 @@ const Store = () => {
           </div>
         ))}
       </div>
+
       <div style={{ height: "80px", width: "100%" }}></div>
     </div>
   );
-};
-
-/* Branding Styles localized for this component */
-const brandStyles = {
-  header: { display: "flex", alignItems: "center", gap: "12px", marginBottom: "30px" },
-  logoCircle: { width: "50px", height: "50px", borderRadius: "50%", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 5px rgba(0,0,0,0.1)" },
-  name: { fontSize: "22px", fontWeight: "bold", color: "#E91E63" }
 };
 
 export default Store;
