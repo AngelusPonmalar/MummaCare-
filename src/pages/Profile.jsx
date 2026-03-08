@@ -3,6 +3,7 @@ import { Heart } from "lucide-react";
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
+
   const [form, setForm] = useState({
     name: "Sarah Johnson",
     age: "28",
@@ -24,7 +25,7 @@ export default function Profile() {
   return (
     <div>
 
-      {/* Floating Header (same as Home page) */}
+      {/* Floating Header */}
       <div style={brandHeader}>
         <div style={logoCircle}>
           <Heart size={26} fill="#ff2d78" color="#ff2d78" />
@@ -36,6 +37,7 @@ export default function Profile() {
 
         <div style={headerRow}>
           <h2 style={title}>Mother Profile 👩‍🍼</h2>
+
           <button style={editButton} onClick={() => setIsEditing(!isEditing)}>
             {isEditing ? "💾 Save Profile" : "✏️ Edit Profile"}
           </button>
@@ -43,98 +45,31 @@ export default function Profile() {
 
         <div style={gridContainer}>
 
-          {/* Column 1 */}
+          {/* Basic Information */}
           <div style={card}>
             <h3 style={sectionTitle}>👤 Basic Information</h3>
 
             {renderInput("Name", "name", form.name, isEditing, handleChange)}
             {renderInput("Age", "age", form.age, isEditing, handleChange)}
-            {renderInput(
-              "Husband Name",
-              "husband",
-              form.husband,
-              isEditing,
-              handleChange
-            )}
-            {renderInput(
-              "House Address",
-              "address",
-              form.address,
-              isEditing,
-              handleChange
-            )}
-            {renderInput(
-              "Mother Name",
-              "mother",
-              form.mother,
-              isEditing,
-              handleChange
-            )}
-            {renderInput(
-              "Father Name",
-              "father",
-              form.father,
-              isEditing,
-              handleChange
-            )}
+            {renderInput("Husband Name", "husband", form.husband, isEditing, handleChange)}
+            {renderInput("House Address", "address", form.address, isEditing, handleChange)}
+            {renderInput("Mother Name", "mother", form.mother, isEditing, handleChange)}
+            {renderInput("Father Name", "father", form.father, isEditing, handleChange)}
           </div>
 
-          {/* Column 2 */}
+          {/* Pregnancy Information */}
           <div style={card}>
             <h3 style={sectionTitle}>🤰 Pregnancy Information</h3>
 
-            {renderInput(
-              "Gravida (Total number of pregnancies)",
-              "gravida",
-              form.gravida,
-              isEditing,
-              handleChange
-            )}
-
-            {renderInput(
-              "Para (Number of births)",
-              "para",
-              form.para,
-              isEditing,
-              handleChange
-            )}
-
-            {renderInput(
-              "Living Children",
-              "livingChild",
-              form.livingChild,
-              isEditing,
-              handleChange
-            )}
-
-            {renderInput(
-              "Abortion / Death History",
-              "loss",
-              form.loss,
-              isEditing,
-              handleChange
-            )}
-
-            {renderInput(
-              "Last Menstrual Period",
-              "lmp",
-              form.lmp,
-              isEditing,
-              handleChange,
-              "date"
-            )}
-
-            {renderInput(
-              "Expected Delivery Date",
-              "edd",
-              form.edd,
-              isEditing,
-              handleChange,
-              "date"
-            )}
+            {renderInput("Gravida (Total pregnancies)", "gravida", form.gravida, isEditing, handleChange)}
+            {renderInput("Para (Births)", "para", form.para, isEditing, handleChange)}
+            {renderInput("Living Children", "livingChild", form.livingChild, isEditing, handleChange)}
+            {renderInput("Abortion / Death History", "loss", form.loss, isEditing, handleChange)}
+            {renderInput("Last Menstrual Period", "lmp", form.lmp, isEditing, handleChange, "date")}
+            {renderInput("Expected Delivery Date", "edd", form.edd, isEditing, handleChange, "date")}
           </div>
 
-          {/* Column 3 */}
+          {/* Summary */}
           <div
             style={{
               ...card,
@@ -181,6 +116,7 @@ function renderInput(label, name, value, isEditing, onChange, type = "text") {
   return (
     <div style={{ marginBottom: "15px" }}>
       <label style={labelStyle}>{label}</label>
+
       <input
         type={type}
         name={name}
@@ -233,21 +169,27 @@ const pageWrapper = {
   padding: "20px",
   paddingTop: "90px",
   boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
 const headerRow = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  flexWrap: "wrap",
   marginBottom: "20px",
   width: "100%",
+  maxWidth: "1200px",
 };
 
 const gridContainer = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
   gap: "20px",
   width: "100%",
+  maxWidth: "1200px",
 };
 
 const card = {
@@ -256,6 +198,7 @@ const card = {
   borderRadius: "16px",
   boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
   border: "1px solid #FCE4EC",
+  width: "100%",
 };
 
 const summaryGrid = {
@@ -282,7 +225,7 @@ const title = {
   color: "#E91E63",
   margin: 0,
   fontSize: "20px",
-  fontWeight: "600"
+  fontWeight: "600",
 };
 
 const editButton = {
