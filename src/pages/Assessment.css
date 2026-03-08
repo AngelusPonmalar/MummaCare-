@@ -1,45 +1,9 @@
-.assessment-container{
-  max-width: 700px;
-  margin:auto;
-  padding:20px;
-  font-family: "Segoe UI", sans-serif;
-  background:#f8f7fb;
-}
+.assessment-container{ width: "100%", minHeight: "100vh", padding: "20px", paddingTop: "90px", background: "#FFF8FB", fontFamily: "sans-serif", color: "#333", boxSizing: "border-box" }
 
-.brand-header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 12px 20px;
+.brand-header{ position: "fixed", top: 0, left: 0, width: "100%", display: "flex", alignItems: "center", gap: "12px", padding: "12px 20px", background: "#FFF8FB", boxShadow: "0 2px 6px rgba(0,0,0,0.08)", zIndex: 1000 }
 
-  background: transparent;   /* remove pink background */
-  border-bottom: none;       /* remove pink line */
-  box-shadow: none;          /* optional: remove shadow */
-
-  z-index: 1000;
-}
-
-.logo-circle{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(255,45,120,0.15);
-}
-
-.brand-name{
-  font-weight: 900;
-  font-size: 28px;
-  color: #d61c5e;
-  text-transform: capitalize;
-}
+.logo-circle{ width: "50px", height: "50px", borderRadius: "50%", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 5px rgba(0,0,0,0.1)" };
+.brand-name{ fontSize: "27px", fontWeight: "bold", color: "#E91E63" }
 
 .assessment-header{
   display:flex;
@@ -50,10 +14,7 @@
 }
 
 .title{
-  color:#E91E63;
-  margin:0;
-  font-size:27px;
-  font-weight:600;
+  color: "#E91E63", marginBottom: "25px", fontSize: "26px"
 }
 
 .update-btn, .save-btn{
